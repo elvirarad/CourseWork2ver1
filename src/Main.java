@@ -1,18 +1,30 @@
+import AllExceptionTask.IncorrectArgumentException;
+import AllExceptionTask.TaskNotFoundException;
+import Task.Task;
+import TaskAllService.TaskService;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+import static TaskAllService.CreateTask.createTask;
+import static TaskAllService.TaskMenu.printMenu;
+
 public class Main {
     public static void main(String[] args)  throws IncorrectArgumentException {
 
         TaskService service= new TaskService();
-        try (Scanner scanner = new Scanner ( System.in )) {
+        try (Scanner scanner = new Scanner( System.in )) {
             label:
             while (true) {
-                printMenu ();
+                printMenu();
                 System.out.print ( "Выберите пункт меню: " );
                 if (scanner.hasNextInt ()) {
                     int menu = scanner.nextInt ();
                     switch (menu) {
                         case 1:
                             Task task;
-                            task = createTask ( scanner );
+                            task = createTask (scanner);
                             System.out.println(task);
                             try {
                                 service.add(task);                                                                          // service.add(createTask)
